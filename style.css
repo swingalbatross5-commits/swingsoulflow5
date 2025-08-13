@@ -53,6 +53,21 @@ nav a:hover {
 }
 
 
+.contact-flex {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.contact-info {
+  flex: 1 1 250px;
+}
+.contact-image {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+
 
 /* Hero with fade slider */
 .hero { position:relative; height:70vh; overflow:hidden; }
