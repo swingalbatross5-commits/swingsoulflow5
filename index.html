@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
  <header>
@@ -81,16 +83,22 @@
 
     <section id="social" class="card">
       <h3>โซเชียลมีเดีย</h3>
-      <a class="badge" href="#" target="_blank" rel="noopener">Facebook</a>
-      <a class="badge" href="#" target="_blank" rel="noopener">Instagram</a>
-      <a class="badge" href="#" target="_blank" rel="noopener">TikTok</a>
-      <a class="badge" href="#" target="_blank" rel="noopener">X</a>
+      <a><ion-icon name="logo-facebook" size="large"></ion-icon></a>
+      <a><ion-icon name="logo-instagram" size="large"></ion-icon></a>
+      <a><ion-icon name="logo-tiktok" size="large"></ion-icon></a>
+      <a><ion-icon name="logo-twitter" size="large"></ion-icon></a>
     </section>
   </main>
 
-  <footer class="site-footer">
-    © <span id="y"></span> Swing Soul Flow — Pranburi Driving Range
-  </footer>
+ <footer class="site-footer">
+  © <span id="y"></span> Swing Soul Flow — Pranburi Driving Range
+  <span class="footer-social">
+    <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook fa-lg"></i></a>
+    <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram fa-lg"></i></a>
+    <a href="#" target="_blank" aria-label="X"><i class="fab fa-x-twitter fa-lg"></i></a>
+    <a href="#" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok fa-lg"></i></a>
+  </span>
+</footer>
 
   <script src="script.js"></script>
 </body>
