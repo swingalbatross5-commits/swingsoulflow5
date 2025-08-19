@@ -181,31 +181,65 @@ nav a:hover {
   }
 }
 
-/* ปรับ hero section */
+/* ปรับ hero section สำหรับมือถือ */
 @media (max-width: 640px) {
   .hero {
     height: auto;
-    min-height: 320px;
+    min-height: 340px;
+    padding-bottom: 16px;
+  }
+  .slides {
+    height: 180px;
+    min-height: 120px;
+    position: relative;
+  }
+  .slide,
+  .slide.active {
+    height: 180px;
+    min-height: 120px;
+    object-fit: cover;
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+  }
+  .hero-overlay {
+    position: static;
+    background: none;
+    padding: 0 8px;
+    display: block;
   }
   .hero-inner {
-    padding: 12px 0 4px;
+    padding: 8px 0 0 0;
+    text-align: center;
   }
   .logo-mid {
-    width: 90px !important;
-    height: 90px !important;
+    width: 80px !important;
+    height: 80px !important;
+    margin: 0 auto 8px auto;
+    display: block;
+  }
+  .kicker {
+    font-size: 11px;
+    padding: 4px 8px;
   }
   h1 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    margin: 8px 0 6px 0;
   }
   .lead {
-    font-size: 1rem;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
   }
   .cta-row {
     flex-direction: column;
     gap: 8px;
+    align-items: center;
+  }
+  .btn {
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px 0;
   }
 }
-
 /* ปรับ card และ section */
 @media (max-width: 640px) {
   .section {
