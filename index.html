@@ -12,17 +12,17 @@
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
- <header>
-  <div class="logo-container">
-    <img src="Swing.png" alt="Swing Soul Flow Logo" class="logo">
-    <span class="site-title">Swing Soul Flow 5 | Pranburi Driving Range</span>
-  </div>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+  <header>
+    <div class="logo-container">
+      <img src="Swing.png" alt="Swing Soul Flow Logo" class="logo">
+      <span class="site-title">Swing Soul Flow 5 | Pranburi Driving Range</span>
+    </div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
   <section class="hero">
     <div class="slides" aria-label="ภาพบรรยากาศสนาม">
@@ -32,13 +32,13 @@
       <img class="slide" src="pic/slide4.jpg" alt="วิวสนาม 4" loading="lazy" />
       <img class="slide" src="pic/slide5.jpg" alt="วิวสนาม 5" loading="lazy" />
       <img class="slide" src="pic/slide6.jpg" alt="วิวสนาม 6" loading="lazy" />
-	    <img class="slide" src="pic/slide7.jpg" alt="วิวสนาม 7" loading="lazy" />
+      <img class="slide" src="pic/slide7.jpg" alt="วิวสนาม 7" loading="lazy" />
     </div>
-    
     <div class="hero-overlay">
       <div class="hero-inner">
         <div>
-          <img src="Swing.png" alt="Swing Soul Flow Logo" class="logo-mid" width="140" height="140"></div>
+          <img src="Swing.png" alt="Swing Soul Flow Logo" class="logo-mid" width="140" height="140">
+        </div>
         <span class="kicker">Pranburi • Thailand</span>
         <h1>สนามไดร์ฟกอล์ฟที่สงบ สามารถฝึกสมาธิและโฟกัสสวิงได้เต็มที่</h1>
         <p class="lead">บรรยากาศร่มรื่น เหมาะสำหรับผู้เริ่มต้นจนถึงมือโปร</p>
@@ -49,8 +49,6 @@
       </div>
     </div>
   </section>
-
-  
 
   <main class="section">
 
@@ -63,6 +61,24 @@
         ไม่ว่าคุณกำลังมองหาการพัฒนาทักษะหรือเพียงแค่ผ่อนคลายด้วยการสวิง Swing Soul Flow 5 ปราณบุรีก็พร้อมมอบสถานที่ที่สมบูรณ์แบบสำหรับนักกอล์ฟทุกคน
       </p>
     </section>
+
+    <!-- Gallery Section -->
+<section class="card gallery-card">
+  <center><h3>บรรยากาศสนาม</h3></center>
+  <div class="gallery-wrapper">
+    <div class="gallery-img-container">
+      <button class="gallery-btn prev" aria-label="ภาพก่อนหน้า">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </button>
+      <img id="gallery-img" src="pic/slide1.jpg" alt="บรรยากาศสนาม 1">
+      <button class="gallery-btn next" aria-label="ภาพถัดไป">
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </button>
+    </div>
+    <div class="gallery-indicator" id="gallery-indicator"></div>
+  </div>
+</section>
+
 
     <section id="about" class="card">
       <h3>เกี่ยวกับเรา</h3>
@@ -79,39 +95,37 @@
     </section>
 
     <section id="contact" class="card contact-flex">
-  <div class="contact-info">
-    <h3>ติดต่อเรา</h3>
-    <p><strong>ที่อยู่:</strong> 214/1 Phetkasem Road, Khao Noi Subdistrict, Pranburi District, Prachuap Khiri Khan 77120</p>
-    <p><strong>Tel:</strong> <a class="badge" href="tel:+66833084455">+66 83 308 4455</a></p>
-    <p><strong>Email:</strong> <a class="badge" href="mailto:swingsoulflow5@gmail.com">swingsoulflow5@gmail.com</a></p>
-    <p><strong>LINE Official:</strong> <a class="badge" href="https://lin.ee/u9hM6CGF" target="_blank" rel="noopener">เพิ่มเพื่อนทาง LINE</a></p>
-    <p><strong>แผนที่:</strong> <a class="badge" href="https://maps.app.goo.gl/NzSiyAojHpTAnynQ7" target="_blank" rel="noopener">Google Maps</a></p>
-  </div>
-  <div class="contact-image">
-    <img src="Swing.png" alt="แผนที่หรือภาพประกอบ" style="max-width:150px; border-radius:12px;">
-  </div>
-</section>
+      <div class="contact-info">
+        <h3>ติดต่อเรา</h3>
+        <p><strong>ที่อยู่:</strong> 214/1 Phetkasem Road, Khao Noi Subdistrict, Pranburi District, Prachuap Khiri Khan 77120</p>
+        <p><strong>Tel:</strong> <a class="badge" href="tel:+66833084455">+66 83 308 4455</a></p>
+        <p><strong>Email:</strong> <a class="badge" href="mailto:swingsoulflow5@gmail.com">swingsoulflow5@gmail.com</a></p>
+        <p><strong>LINE Official:</strong> <a class="badge" href="https://lin.ee/u9hM6CGF" target="_blank" rel="noopener">เพิ่มเพื่อนทาง LINE</a></p>
+        <p><strong>แผนที่:</strong> <a class="badge" href="https://maps.app.goo.gl/NzSiyAojHpTAnynQ7" target="_blank" rel="noopener">Google Maps</a></p>
+      </div>
+      <div class="contact-image">
+        <img src="Swing.png" alt="แผนที่หรือภาพประกอบ" style="max-width:150px; border-radius:12px;">
+      </div>
+    </section>
 
-    
   </main>
 
- <footer class="site-footer">
-  <section id="social" class="card">
+  <footer class="site-footer">
+    <section id="social" class="card">
       <h3>Follow us</h3>
       <a href="https://www.facebook.com/profile.php?id=61579070145808"><ion-icon name="logo-facebook" size="large"></ion-icon></a>
       <a href="https://www.instagram.com/swingsoulflow5/"><ion-icon name="logo-instagram" size="large"></ion-icon></a>
-      <a href="https://www.tiktok.com/@swingsoulflow"><ion-icon name="logo-tiktok" size="large" ></ion-icon></a>
-      <a href="https://x.com/swingsoulflow5"><ion-icon name="logo-twitter" size="large" ></ion-icon></a>
+      <a href="https://www.tiktok.com/@swingsoulflow"><ion-icon name="logo-tiktok" size="large"></ion-icon></a>
+      <a href="https://x.com/swingsoulflow5"><ion-icon name="logo-twitter" size="large"></ion-icon></a>
     </section>
-  © <span id="y"></span> Swing Soul Flow 5 — Pranburi Driving Range
-  <span class="footer-social">
-    <a href="https://www.facebook.com/profile.php?id=61579070145808" target="_blank" aria-label="Facebook"><i class="fab fa-facebook fa-lg"></i></a>
-    <a href="https://www.instagram.com/swingsoulflow5/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram fa-lg"></i></a>
-    <a href="https://x.com/swingsoulflow5" target="_blank" aria-label="X"><i class="fab fa-x-twitter fa-lg"></i></a>
-    <a href="https://www.tiktok.com/@swingsoulflow" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok fa-lg"></i></a>
-  </span>
-  
-</footer>
+    © <span id="y"></span> Swing Soul Flow 5 — Pranburi Driving Range
+    <span class="footer-social">
+      <a href="https://www.facebook.com/profile.php?id=61579070145808" target="_blank" aria-label="Facebook"><i class="fab fa-facebook fa-lg"></i></a>
+      <a href="https://www.instagram.com/swingsoulflow5/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram fa-lg"></i></a>
+      <a href="https://x.com/swingsoulflow5" target="_blank" aria-label="X"><i class="fab fa-x-twitter fa-lg"></i></a>
+      <a href="https://www.tiktok.com/@swingsoulflow" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok fa-lg"></i></a>
+    </span>
+  </footer>
 
   <script src="script.js"></script>
 </body>
