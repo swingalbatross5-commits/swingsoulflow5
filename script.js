@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const galleryIndicator = document.getElementById('gallery-indicator');
   const prevBtn = document.querySelector('.gallery-btn.prev');
   const nextBtn = document.querySelector('.gallery-btn.next');
+  let autoSlideTimer;
 
   function updateGallery() {
     if (!galleryImg) return;
@@ -43,15 +44,32 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  function showNextGallery() {
+    galleryIndex = (galleryIndex + 1) % galleryImages.length;
+    updateGallery();
+  }
+
+  function showPrevGallery() {
+    galleryIndex = (galleryIndex - 1 + galleryImages.length) % galleryImages.length;
+    updateGallery();
+  }
+
+  function resetAutoSlide() {
+    clearInterval(autoSlideTimer);
+    autoSlideTimer = setInterval(showNextGallery, 4000);
+  }
+
   if (prevBtn && nextBtn && galleryImg) {
     prevBtn.onclick = function () {
-      galleryIndex = (galleryIndex - 1 + galleryImages.length) % galleryImages.length;
-      updateGallery();
+      showPrevGallery();
+      resetAutoSlide();
     };
     nextBtn.onclick = function () {
-      galleryIndex = (galleryIndex + 1) % galleryImages.length;
-      updateGallery();
+      showNextGallery();
+      resetAutoSlide();
     };
+    // Initial
     updateGallery();
+    autoSlideTimer = setInterval(showNextGallery, 4000);
   }
 });
