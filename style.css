@@ -319,3 +319,14 @@ nav a:hover {
 
 /* Utility */
 img { vertical-align: middle; }
+
+.review-card input, .review-card textarea {
+  margin: 4px 0 8px 0;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #e0e6ef;
+  width: 100%;
+  font-size: 1rem;
+}
+.review-card textarea { resize: vertical; }
+.review-item { background: #fafbfc; border-radius: 8px; margin-bottom: 10px; }
