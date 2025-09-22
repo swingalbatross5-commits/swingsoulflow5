@@ -68,3 +68,4 @@ app.post('/api/reviews', upload.single('image'), (req, res) => {
 
 // ให้เสิร์ฟไฟล์รูป
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
