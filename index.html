@@ -80,40 +80,41 @@
   </section>
 
    <!-- Review Section -->
-    <section class="card review-card">
-      <button id="showReviewForm" class="btn btn-primary" style="margin-bottom:12px;">แสดงความคิดเห็น / รีวิว</button>
-      <div id="reviewFormSection" style="display:none;">
-        <form id="reviewForm" enctype="multipart/form-data">
-        <div>
-          <input type="text" id="reviewName" placeholder="ชื่อ" required>
-          <input type="text" id="reviewSurname" placeholder="นามสกุล" required>
-        </div>
-        <div>
-          <input type="email" id="reviewEmail" placeholder="อีเมล" required>
-        </div>
-        <div>
-          <textarea id="reviewText" placeholder="แสดงความคิดเห็น (ไม่เกิน 200 ตัวอักษร)" maxlength="200" required style="width:100%;height:70px;"></textarea>
-          <div style="font-size:12px;color:#888;" id="charCount">0/200</div>
-        </div>
-      <div>
-        <input type="file" id="reviewImage" accept="image/*">
-      </div>
-        <div style="margin-top:10px;">
-        <button type="submit" class="btn btn-primary">ส่งความคิดเห็น</button>
-        <button type="reset" class="btn btn-ghost">ล้างข้อมูล</button>
-      </div>
-      </form>
-      </div>
-      <div id="reviewList" style="margin-top:24px;">
-      <h4>รีวิวจากลูกค้า</h4>
-      <div id="reviews"></div>
+  <section class="card review-card">
+    <h4>รีวิวจากลูกค้า</h4>
+  <div id="reviews"></div>
+  <div style="text-align:center; margin-top:24px;">
+    <button id="showReviewForm" class="btn btn-primary">แสดงความคิดเห็น / รีวิว</button>
+  </div>
+  <div id="reviewFormSection" style="display:none; margin-top:24px;">
+    <form id="reviewForm" enctype="multipart/form-data">
+    <div class="review-row">
+      <input type="text" id="reviewName" placeholder="ชื่อ" required>
+      <input type="text" id="reviewSurname" placeholder="นามสกุล" required>
+      <input type="email" id="reviewEmail" placeholder="อีเมล" required>
     </div>
-    </section>
+    <div class="review-text-row">
+      <textarea id="reviewText" placeholder="แสดงความคิดเห็น (ไม่เกิน 200 ตัวอักษร)" maxlength="200" required></textarea>
+    <div id="charCount">0/200</div>
+    </div>
+    <div class="review-file-row">
+      <label for="reviewImage" class="file-label">
+        <span>เลือกรูปภาพ (ถ้ามี)</span>
+        <input type="file" id="reviewImage" accept="image/*">
+      </label>
+      <img id="reviewPreview" style="display:none;">
+    </div>
+    <div class="review-btn-row">
+      <button type="submit" class="btn btn-primary">ส่งความคิดเห็น</button>
+      <button type="reset" class="btn btn-ghost">ล้างข้อมูล</button>
+    </div>
+  </form>
+  </div>
+  </section>
 
-
-    <section id="about" class="card">
-      <h3>เกี่ยวกับเรา</h3>
-      <p>Swing Soul Flow 5 — สนามไดร์ฟกอล์ฟในอำเภอปราณบุรี จังหวัดประจวบคีรีขันธ์ บรรยากาศสงบ เหมาะสำหรับฝึกซ้อมทุกระดับ</p>
+  <section id="about" class="card">
+    <h3>เกี่ยวกับเรา</h3>
+  <p>Swing Soul Flow 5 — สนามไดร์ฟกอล์ฟในอำเภอปราณบุรี จังหวัดประจวบคีรีขันธ์ บรรยากาศสงบ เหมาะสำหรับฝึกซ้อมทุกระดับ</p>
       <p><strong>เวลา เปิด-ปิด:</strong><br>
         <pre>จันทร์         08:00–22:00 น.</pre>
         <pre>อังคาร        08:00–22:00 น.</pre>
@@ -137,7 +138,7 @@
       <div class="contact-image">
         <img src="Swing.png" alt="แผนที่หรือภาพประกอบ" style="max-width:150px; border-radius:12px;">
       </div>
-    </section>
+  </section>
 
   </main>
 
