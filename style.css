@@ -36,7 +36,7 @@ header {
 .site-title {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #223046;
+  color:#3a6ea5;
 }
 nav {
   display: flex;
@@ -112,7 +112,7 @@ nav a:hover {
   background: linear-gradient(135deg, #54e1b5, #32c3f1);
   color: #fff;
 }
-.btn-primary:hover, .btn-primary:focus {
+.btn-primary:hover{
   background: #1a3a6e;
 }
 .btn-ghost {
@@ -309,7 +309,7 @@ h4 { font-size: 1.1rem; }
 }
 .gallery-btn.prev { left: 10px; }
 .gallery-btn.next { right: 10px; }
-.gallery-btn:hover, .gallery-btn:focus {
+.gallery-btn:hover {
   background: #32c3f1;
   color: #fff;
   box-shadow: 0 4px 16px #32c3f133;
