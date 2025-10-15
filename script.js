@@ -1,236 +1,339 @@
+// ...existing code...
+// Client-side script: gallery, reviews, form, preview, i18n, utils
+
 // Year in footer
-const yEl = document.getElementById('y');
-if (yEl) yEl.textContent = new Date().getFullYear();
+(function setYear() {
+  const yEl = document.getElementById('y');
+  if (yEl) yEl.textContent = new Date().getFullYear();
+})();
 
-document.addEventListener('DOMContentLoaded', function () {
-  // --- Hero Slide (ภาพบนสุดเปลี่ยนอัตโนมัติ) ---
-  const slides = document.querySelectorAll('.slide');
-  let idx = 0;
-  if (slides.length > 0) {
-    setInterval(() => {
-      slides[idx].classList.remove('active');
-      idx = (idx + 1) % slides.length;
-      slides[idx].classList.add('active');
-    }, 4000); // เปลี่ยนทุก 4 วินาที
+// --- Translations (i18n) ---
+const I18N = {
+  th: {
+    siteTitle: "Swing Soul Flow 5",
+    heroTitle: "สนามไดร์ฟกอล์ฟที่สงบ สามารถฝึกสมาธิและโฟกัสสวิงได้เต็มที่",
+    heroLead: "บรรยากาศร่มรื่น เหมาะสำหรับผู้เริ่มต้นจนถึงมือโปร",
+    welcomeTitle: "ยินดีต้อนรับ! <span style='color:#2b6fa6'>Swing Soul Flow 5</span>",
+    welcomeP1: "Swing Soul Flow 5 ตั้งอยู่บนพื้นที่อันเงียบสงบของปราณบุรี มอบประสบการณ์สนามไดร์ฟกอล์ฟระดับพรีเมียมที่ออกแบบมาสำหรับทั้งนักกอล์ฟมือใหม่และนักกอล์ฟที่มีประสบการณ์",
+    welcomeP2: "พื้นที่กว้างขวาง สิ่งอำนวยความสะดวกคุณภาพ และบรรยากาศธรรมชาติที่ช่วยให้คุณโฟกัสการฝึกซ้อมได้เต็มที่",
+    galleryTitle: "บรรยากาศสนาม",
+    reviewTitle: "รีวิวจากลูกค้า",
+    showReviewBtn: "แสดงความคิดเห็น / รีวิว",
+    footerText: "Swing Soul Flow 5 — Pranburi Driving Range",
+    chooseFile: "เลือกรูปภาพ (ถ้ามี)",
+    submitReview: "ส่งความคิดเห็น",
+    resetForm: "ล้างข้อมูล",
+    noReviews: "ยังไม่มีรีวิว"
+  },
+  en: {
+    siteTitle: "Swing Soul Flow 5",
+    heroTitle: "Calm driving range to practice focus and your swing",
+    heroLead: "A peaceful atmosphere suitable for beginners to professionals",
+    welcomeTitle: "Welcome! <span style='color:#2b6fa6'>Swing Soul Flow 5</span>",
+    welcomeP1: "Swing Soul Flow 5 is located in tranquil Pranburi, offering a premium driving range experience designed for both beginners and experienced golfers.",
+    welcomeP2: "Ample space, quality facilities and a natural setting help you focus on practice.",
+    galleryTitle: "Gallery",
+    reviewTitle: "Customer Reviews",
+    showReviewBtn: "Leave a review",
+    footerText: "Swing Soul Flow 5 — Pranburi Driving Range",
+    chooseFile: "Choose image (optional)",
+    submitReview: "Submit",
+    resetForm: "Reset",
+    noReviews: "No reviews yet"
   }
+};
 
-  // --- Gallery Section (ปุ่มเปลี่ยนภาพ + อัตโนมัติ) ---
-  const galleryImages = [
-    "pic/slide1.jpg",
-    "pic/slide2.jpg",
-    "pic/slide3.jpg",
-    "pic/slide4.jpg",
-    "pic/slide5.jpg",
-    "pic/slide6.jpg",
-    "pic/slide7.jpg"
-  ];
-  let galleryIndex = 0;
-  const galleryImg = document.getElementById('gallery-img');
-  const galleryIndicator = document.getElementById('gallery-indicator');
-  const prevBtn = document.querySelector('.gallery-btn.prev');
-  const nextBtn = document.querySelector('.gallery-btn.next');
-  let autoSlideTimer;
+function applyLanguage(lang) {
+  const t = I18N[lang] || I18N.th;
+  const setHTML = (id, html) => { const el = document.getElementById(id); if (el) el.innerHTML = html; };
+  const setText = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
 
-  function updateGallery() {
-    if (!galleryImg) return;
-    galleryImg.src = galleryImages[galleryIndex];
-    galleryImg.alt = `บรรยากาศสนาม ${galleryIndex + 1}`;
-    if (galleryIndicator) {
-      galleryIndicator.textContent = `${galleryIndex + 1} / ${galleryImages.length}`;
-    }
-  }
+  setText('site-title', t.siteTitle);
+  setHTML('hero-title', t.heroTitle);
+  setText('hero-lead', t.heroLead);
+  setHTML('welcome-title', t.welcomeTitle);
+  setText('welcome-p1', t.welcomeP1);
+  setText('welcome-p2', t.welcomeP2);
+  setText('gallery-title', t.galleryTitle);
+  setText('review-title', t.reviewTitle);
+  setText('showReviewForm', t.showReviewBtn);
+  setText('footer-text', t.footerText);
 
-  function showNextGallery() {
-    galleryIndex = (galleryIndex + 1) % galleryImages.length;
-    updateGallery();
-  }
+  // form labels (if present)
+  const fileLabel = document.querySelector('.file-label span');
+  if (fileLabel) fileLabel.textContent = t.chooseFile;
+  const submitBtn = document.querySelector('#reviewForm button[type="submit"]');
+  if (submitBtn) submitBtn.textContent = t.submitReview;
+  const resetBtn = document.querySelector('#reviewForm button[type="reset"]');
+  if (resetBtn) resetBtn.textContent = t.resetForm;
 
-  function showPrevGallery() {
-    galleryIndex = (galleryIndex - 1 + galleryImages.length) % galleryImages.length;
-    updateGallery();
-  }
+  // update active class on lang buttons
+  const btnTh = document.getElementById('lang-th');
+  const btnEn = document.getElementById('lang-en');
+  if (btnTh) btnTh.classList.toggle('active-lang', lang === 'th');
+  if (btnEn) btnEn.classList.toggle('active-lang', lang === 'en');
 
-  function resetAutoSlide() {
-    clearInterval(autoSlideTimer);
-    autoSlideTimer = setInterval(showNextGallery, 4000);
-  }
-
-  if (prevBtn && nextBtn && galleryImg) {
-    prevBtn.onclick = function () {
-      showPrevGallery();
-      resetAutoSlide();
-    };
-    nextBtn.onclick = function () {
-      showNextGallery();
-      resetAutoSlide();
-    };
-    updateGallery();
-    autoSlideTimer = setInterval(showNextGallery, 4000);
-  }
-
-  // --- Review system ---
-  const showReviewFormBtn = document.getElementById('showReviewForm');
-  const reviewFormSection = document.getElementById('reviewFormSection');
-  const reviewForm = document.getElementById('reviewForm');
-  const reviewText = document.getElementById('reviewText');
-  const charCount = document.getElementById('charCount');
-  const reviewsDiv = document.getElementById('reviews');
-  const imageInput = document.getElementById('reviewImage');
-  
-  // Preview รูปภาพรีวิวก่อนส่ง
-let previewImg = document.getElementById('reviewPreview');
-if (!previewImg && imageInput) {
-  // สร้าง element สำหรับ preview ถ้ายังไม่มี
-  previewImg = document.createElement('img');
-  previewImg.id = 'reviewPreview';
-  previewImg.style = 'display:block;max-width:220px;max-height:220px;margin:12px auto 0;border-radius:12px;object-fit:cover;background:#eee;';
-  imageInput.parentElement.appendChild(previewImg);
-  previewImg.style.display = 'none';
+  try { localStorage.setItem('site_lang', lang); } catch (e) {}
 }
-if (imageInput && previewImg) {
-  imageInput.addEventListener('change', function() {
-    if (this.files && this.files[0]) {
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        previewImg.src = e.target.result;
-        previewImg.style.display = 'block';
-      };
-      reader.readAsDataURL(this.files[0]);
-    } else {
-      previewImg.style.display = 'none';
-      previewImg.src = '';
-    }
+
+// --- Utilities ---
+function maskEmail(email) {
+  if (!email) return '';
+  const [name, domain] = email.split('@');
+  if (!domain) return email;
+  const a = name.slice(0, 2) + '***';
+  return a + '@' + domain;
+}
+
+function safeFetchJSON(url, opts) {
+  return fetch(url, opts).then(r => {
+    if (!r.ok) throw new Error('Network response not ok: ' + r.status);
+    return r.json();
   });
 }
 
-  // Show/hide form
-  if (showReviewFormBtn && reviewFormSection) {
-    showReviewFormBtn.onclick = function() {
-      reviewFormSection.style.display = reviewFormSection.style.display === 'none' ? 'block' : 'none';
-    };
-  }
+// --- Gallery behavior ---
+function initGallery() {
+  const main = document.getElementById('gallery-img');
+  const thumbs = Array.from(document.querySelectorAll('.gallery-thumbs .thumb'));
+  if (!main || thumbs.length === 0) return;
 
-  // Character count
-  if (reviewText && charCount) {
-    reviewText.oninput = function() {
-      charCount.textContent = `${this.value.length}/200`;
-    };
-  }
+  const setActiveThumb = (el) => {
+    thumbs.forEach(t => t.classList.toggle('active', t === el));
+  };
 
-  // Mask email
-  function maskEmail(email) {
-    const [name, domain] = email.split('@');
-    if (!name || !domain) return email;
-    let maskedName = name.length <= 2
-      ? name[0] + '***'
-      : name.slice(0, 2) + '***';
-    let maskedDomain = domain.length > 6
-      ? domain.slice(0, 2) + '***' + domain.slice(-4)
-      : domain;
-    return maskedName + '@' + maskedDomain;
-  }
+  thumbs.forEach(t => {
+    t.addEventListener('click', () => {
+      const src = t.getAttribute('src') || t.dataset.src;
+      if (src) main.src = src;
+      setActiveThumb(t);
+    });
+  });
 
-  // Render reviews
-  function renderReviews(reviews) {
-  reviewsDiv.innerHTML = '';
+  // keyboard left/right to cycle thumbs
+  document.addEventListener('keydown', (e) => {
+    if (!main) return;
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+      const activeIndex = thumbs.findIndex(t => t.classList.contains('active'));
+      let next = activeIndex;
+      if (activeIndex === -1) next = 0;
+      else if (e.key === 'ArrowLeft') next = (activeIndex - 1 + thumbs.length) % thumbs.length;
+      else next = (activeIndex + 1) % thumbs.length;
+      const t = thumbs[next];
+      if (t) { t.click(); t.scrollIntoView({behavior:'smooth', inline:'center'}); }
+    }
+  });
+
+  // set first active
+  if (!thumbs.some(t => t.classList.contains('active'))) setTimeout(()=>thumbs[0].classList.add('active'), 0);
+}
+
+// --- Reviews: fetch & render ---
+async function loadReviews() {
+  const reviewsDiv = document.getElementById('reviews');
+  if (!reviewsDiv) return;
+  reviewsDiv.innerHTML = '<div style="color:var(--muted);padding:8px;">Loading...</div>';
+  try {
+    const reviews = await (await fetch('/api/reviews')).json();
+    renderReviews(Array.isArray(reviews) ? reviews : []);
+  } catch (err) {
+    console.error('loadReviews error', err);
+    reviewsDiv.innerHTML = '<div style="color:#b00;padding:8px;">ไม่สามารถโหลดรีวิวได้</div>';
+  }
+}
+
+function renderReviews(reviews) {
+  const reviewsDiv = document.getElementById('reviews');
+  if (!reviewsDiv) return;
   if (!reviews || reviews.length === 0) {
-    reviewsDiv.innerHTML = '<div style="color:#888;">ยังไม่มีรีวิว</div>';
+    const noText = (localStorage.getItem('site_lang') === 'en') ? I18N.en.noReviews : I18N.th.noReviews;
+    reviewsDiv.innerHTML = `<div style="color:var(--muted);padding:12px;">${noText}</div>`;
     return;
   }
-  // แสดงแค่ 5 โพสต์ล่าสุด (หรือ 5 โพสต์แรก)
-  const showReviews = reviews.slice(-5).reverse(); // 5 โพสต์ล่าสุด (ใหม่สุดอยู่บน)
-  showReviews.forEach((r, i) => {
-    const reviewEl = document.createElement('div');
-    reviewEl.className = 'review-item';
-    // ถ้าไม่มี r.image ให้ใช้ Swing.png
+
+  // newest first
+  const list = reviews.slice().reverse();
+  reviewsDiv.innerHTML = '';
+  list.forEach((r, idx) => {
     const imgSrc = r.image ? `/uploads/${r.image}` : 'Swing.png';
-    const imgHtml = `<img src="${imgSrc}" alt="รูปรีวิว" class="review-img">`;
-    reviewEl.innerHTML = `
-      ${imgHtml}
-      <div class="review-content">
-        <div style="font-weight:bold;font-size:1.1em;">${r.name} ${r.surname} <span style="color:#888;font-size:0.9em;">(${maskEmail(r.email)})</span></div>
-        <div style="margin:8px 0 12px 0;white-space:pre-line;">${r.text}</div>
-        <button class="btn btn-ghost btn-delete" data-index="${i}" style="font-size:12px;padding:4px 10px;">ลบรีวิว</button>
-        <div class="delete-password" style="display:none;margin-top:4px;">
-          <input type="password" placeholder="รหัสผ่านสำหรับลบ" class="delete-pass-input" style="font-size:12px;">
-          <button class="btn btn-primary btn-confirm-delete" data-index="${i}" style="font-size:12px;padding:2px 8px;">ยืนยัน</button>
-        </div>
+    const item = document.createElement('article');
+    item.className = 'review-item';
+    item.innerHTML = `
+      <img class="review-img" src="${imgSrc}" alt="review image">
+      <div class="review-meta">
+        <div class="name">${escapeHtml(r.name || '')} ${escapeHtml(r.surname || '')} <span style="color:var(--muted);font-weight:600;font-size:0.85rem">(${maskEmail(r.email||'')})</span></div>
+        <div class="text">${escapeHtml(r.text || '')}</div>
       </div>
     `;
-    reviewsDiv.appendChild(reviewEl);
+    reviewsDiv.appendChild(item);
   });
-
-  // ... (ปุ่มลบรีวิว)
 }
-  // โหลดรีวิว
-  function loadReviews() {
-    fetch('/api/reviews')
-      .then(res => res.json())
-      .then(renderReviews);
-  }
 
-  // Submit review
-if (reviewForm) {
-  reviewForm.onsubmit = function(e) {
-    e.preventDefault();
-    if (reviewText.value.length > 200) {
-      alert("ข้อความต้องไม่เกิน 200 ตัวอักษร");
-      return;
-    }
-    if (imageInput && imageInput.files[0] && imageInput.files[0].size > 4 * 1024 * 1024) {
-      alert("ขนาดไฟล์รูปต้องไม่เกิน 4MB");
-      return;
-    }
-    const formData = new FormData();
-    formData.append('name', document.getElementById('reviewName').value);
-    formData.append('surname', document.getElementById('reviewSurname').value);
-    formData.append('email', document.getElementById('reviewEmail').value);
-    formData.append('text', reviewText.value);
-    if (imageInput && imageInput.files[0]) {
-      formData.append('image', imageInput.files[0]);
-    }
-
-    fetch('/api/reviews', {
-      method: 'POST',
-      body: formData
-    })
-    .then(res => {
-      if (!res.ok) throw new Error('Network response was not ok');
-      return res.json();
-    })
-    .then(data => {
-      if (data.success) {
-        loadReviews();
-        reviewForm.reset();
-        if (charCount) charCount.textContent = "0/200";
-        if (reviewFormSection) reviewFormSection.style.display = 'none';
-        alert("ส่งความคิดเห็นสำเร็จ!");
-      } else {
-        alert("เกิดข้อผิดพลาด: " + (data.error || 'ไม่ทราบสาเหตุ'));
-      }
-    })
-    .catch(err => {
-      alert("ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้: " + err.message);
-    });
-  };
+// simple HTML escape
+function escapeHtml(s) {
+  if (!s) return '';
+  return String(s).replace(/[&<>"']/g, (m) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 }
-  loadReviews();
-});
 
-const imageInput = document.getElementById('reviewImage');
-const previewImg = document.getElementById('reviewPreview');
-if (imageInput && previewImg) {
-  imageInput.addEventListener('change', function() {
-    if (this.files && this.files[0]) {
+// --- Review form: preview, charcount, submit ---
+function initReviewForm() {
+  const form = document.getElementById('reviewForm');
+  if (!form) return;
+
+  const imageInput = document.getElementById('reviewImage');
+  const previewImg = document.getElementById('reviewPreview');
+  const charCount = document.getElementById('charCount');
+  const textArea = document.getElementById('reviewText');
+
+  // preview
+  if (imageInput && previewImg) {
+    imageInput.addEventListener('change', function() {
+      const f = this.files && this.files[0];
+      if (!f) { previewImg.style.display = 'none'; previewImg.src=''; return; }
       const reader = new FileReader();
-      reader.onload = function(e) {
+      reader.onload = e => {
         previewImg.src = e.target.result;
         previewImg.style.display = 'block';
       };
-      reader.readAsDataURL(this.files[0]);
-    } else {
-      previewImg.style.display = 'none';
-      previewImg.src = '';
+      reader.readAsDataURL(f);
+    });
+  }
+
+  // char count
+  if (textArea && charCount) {
+    const update = () => charCount.textContent = `${textArea.value.length}/200`;
+    textArea.addEventListener('input', update);
+    update();
+  }
+
+  // submit
+  form.addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+    try {
+      const fd = new FormData(form);
+      // ensure fields exist
+      if (!fd.get('name') && document.getElementById('reviewName')) fd.set('name', document.getElementById('reviewName').value);
+      if (!fd.get('surname') && document.getElementById('reviewSurname')) fd.set('surname', document.getElementById('reviewSurname').value);
+      // server expects fields as used in backend; adapt if necessary
+      const res = await fetch('/api/reviews', { method: 'POST', body: fd });
+      const json = await res.json().catch(()=>({}));
+      if (!res.ok) throw new Error(json && json.error ? json.error : 'Post error');
+      // success: reset form, reload reviews, hide form
+      form.reset();
+      if (previewImg) { previewImg.style.display='none'; previewImg.src=''; }
+      await loadReviews();
+      const formSection = document.getElementById('reviewFormSection');
+      if (formSection) formSection.style.display = 'none';
+    } catch (err) {
+      console.error('submit review error', err);
+      alert('ไม่สามารถส่งรีวิวได้: ' + (err.message || err));
+    } finally {
+      if (btn) {
+        try {
+          btn.disabled = false;
+          const lang = localStorage.getItem('site_lang') || 'th';
+          btn.textContent = I18N[lang].submitReview || 'Submit';
+        } catch (e) { btn.textContent = 'Submit'; }
+      }
     }
   });
+
+  // reset behaviour: hide preview and reset char count
+  form.addEventListener('reset', () => {
+    setTimeout(() => {
+      if (previewImg) { previewImg.style.display='none'; previewImg.src=''; }
+      if (textArea && charCount) charCount.textContent = `${textArea.value.length}/200`;
+    }, 10);
+  });
 }
+
+// toggle review form
+function initFormToggle() {
+  const toggle = document.getElementById('showReviewForm');
+  const section = document.getElementById('reviewFormSection');
+  if (!toggle || !section) return;
+  toggle.addEventListener('click', () => {
+    section.style.display = (section.style.display === 'none' || !section.style.display) ? 'block' : 'none';
+    // scroll into view when opening
+    if (section.style.display === 'block') section.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+}
+
+// --- Initialize on DOMContentLoaded ---
+document.addEventListener('DOMContentLoaded', () => {
+  // language buttons
+  const btnTh = document.getElementById('lang-th');
+  const btnEn = document.getElementById('lang-en');
+  if (btnTh) btnTh.addEventListener('click', () => applyLanguage('th'));
+  if (btnEn) btnEn.addEventListener('click', () => applyLanguage('en'));
+  const savedLang = (() => { try { return localStorage.getItem('site_lang'); } catch(e){ return null } })() || 'th';
+  applyLanguage(savedLang);
+
+  // init components
+  initGallery();
+  initReviewForm();
+  initFormToggle();
+  loadReviews().catch(()=>{});
+
+  // accessibility: focus outline visible on keyboard navigation
+  document.body.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab') document.documentElement.classList.add('user-is-tabbing');
+  }, { once: true });
+});
+
+// --- Hero carousel: autoplay, pause on hover, manual via thumbnails ---
+function initHeroCarousel(options = {}) {
+  const interval = options.interval || 5000;
+  const slides = Array.from(document.querySelectorAll('.hero-media .slide'));
+  if (!slides.length) return;
+
+  let idx = slides.findIndex(s => s.classList.contains('active'));
+  if (idx === -1) idx = 0;
+  slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+
+  let timer = null;
+  const goTo = (next) => {
+    slides[idx].classList.remove('active');
+    idx = (next + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+  };
+  const next = () => goTo(idx + 1);
+
+  // autoplay
+  const start = () => {
+    stop();
+    timer = setInterval(next, interval);
+  };
+  const stop = () => {
+    if (timer) { clearInterval(timer); timer = null; }
+  };
+
+  // pause on hover/focus
+  const media = document.querySelector('.hero-media');
+  if (media) {
+    media.addEventListener('mouseenter', stop);
+    media.addEventListener('focusin', stop);
+    media.addEventListener('mouseleave', start);
+    media.addEventListener('focusout', start);
+  }
+
+  // allow thumbnails to control if present
+  document.querySelectorAll('.gallery-thumbs .thumb').forEach((thumb, i) => {
+    thumb.addEventListener('click', () => {
+      // if hero slides count matches thumbs, map the image
+      if (i < slides.length) {
+        goTo(i);
+      }
+    });
+  });
+
+  start();
+}
+
+// ensure init call
+document.addEventListener('DOMContentLoaded', () => {
+  try { initHeroCarousel({ interval: 4500 }); } catch (e) {}
+  // ...existing initialization code already present...
+});

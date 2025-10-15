@@ -1,165 +1,165 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="th">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pranburi Driving Range | Swing Soul Flow</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Swing Soul Flow 5 — Pranburi Driving Range</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <div class="logo-container">
-      <img src="Swing.png" alt="Swing Soul Flow Logo" class="logo">
-      <span class="site-title">Swing Soul Flow 5 | Pranburi Driving Range</span>
-    </div>
-      <nav>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <img src="Swing.png" alt="Swing Soul Flow" class="logo">
+        <span id="site-title" class="site-title">Swing Soul Flow 5</span>
+      </div>
+      <nav class="main-nav" aria-label="หลัก">
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
+      <div class="lang-controls">
+        <button id="lang-th" class="lang-btn" aria-label="ภาษาไทย">ไทย</button>
+        <button id="lang-en" class="lang-btn" aria-label="English">EN</button>
+      </div>
+    </div>
   </header>
 
-  <section class="hero">
-    <div class="slides" aria-label="ภาพบรรยากาศสนาม">
-      <img class="slide active" src="pic/slide1.jpg" alt="วิวสนามกอล์ฟ 1" loading="eager" />
-      <img class="slide" src="pic/slide2.jpg" alt="วิวสนามกอล์ฟ 2" loading="lazy" />
-      <img class="slide" src="pic/slide3.jpg" alt="วิวธรรมชาติ 3" loading="lazy" />
-      <img class="slide" src="pic/slide4.jpg" alt="วิวสนาม 4" loading="lazy" />
-      <img class="slide" src="pic/slide5.jpg" alt="วิวสนาม 5" loading="lazy" />
-      <img class="slide" src="pic/slide6.jpg" alt="วิวสนาม 6" loading="lazy" />
-      <img class="slide" src="pic/slide7.jpg" alt="วิวสนาม 7" loading="lazy" />
-    </div>
-    <div class="hero-overlay">
-      <div class="hero-inner">
-        <div>
-          <img src="Swing.png" alt="Swing Soul Flow Logo" class="logo-mid" width="135" height="135" style="margin-bottom: 18px;">
+    <section id="home" class="hero">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <h1 id="hero-title">สนามไดร์ฟกอล์ฟที่สงบ สามารถฝึกสมาธิและโฟกัสสวิงได้เต็มที่</h1>
+          <p id="hero-lead" class="muted">บรรยากาศร่มรื่น เหมาะสำหรับผู้เริ่มต้นจนถึงมือโปร</p>
+          <div class="hero-ctas">
+            <a class="btn primary" href="https://maps.app.goo.gl/NzSiyAojHpTAnynQ7" target="_blank" rel="noopener">ดูแผนที่</a>
+            <a class="btn ghost" href="#contact">ติดต่อเรา</a>
+          </div>
         </div>
-        <span class="kicker">Pranburi • Thailand</span>
-        <h1>สนามไดร์ฟกอล์ฟที่สงบ สามารถฝึกสมาธิและโฟกัสสวิงได้เต็มที่</h1>
-        <p class="lead">บรรยากาศร่มรื่น เหมาะสำหรับผู้เริ่มต้นจนถึงมือโปร</p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="https://maps.app.goo.gl/NzSiyAojHpTAnynQ7" target="_blank" rel="noopener">เปิดแผนที่ Google Maps</a>
-          <a class="btn btn-ghost" href="#contact">ดูรายละเอียดติดต่อ</a>
+
+        <!-- full-width carousel media -->
+        <div class="hero-media carousel" aria-hidden="false">
+          <div class="slides">
+            <img class="slide active" src="pic/slide1.jpg" alt="สนามไดร์ฟ 1">
+            <img class="slide" src="pic/slide2.jpg" alt="สนามไดร์ฟ 2">
+            <img class="slide" src="pic/slide3.jpg" alt="สนามไดร์ฟ 3">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section container welcome card">
+      <div class="welcome-inner">
+        <h2 id="welcome-title">ยินดีต้อนรับ! <span style="color:#2b6fa6">Swing Soul Flow 5</span></h2>
+        <p id="welcome-p1" class="lead">Swing Soul Flow 5 ตั้งอยู่บนพื้นที่อันเงียบสงบของปราณบุรี มอบประสบการณ์สนามไดร์ฟกอล์ฟระดับพรีเมียมที่ออกแบบมาสำหรับทั้งนักกอล์ฟมือใหม่และนักกอล์ฟที่มีประสบการณ์</p>
+        <p id="welcome-p2" class="lead muted">พื้นที่กว้างขวาง สิ่งอำนวยความสะดวกคุณภาพ และบรรยากาศธรรมชาติที่ช่วยให้คุณโฟกัสการฝึกซ้อมได้เต็มที่</p>
+      </div>
+    </section>
+
+    <section class="section container gallery-card card">
+      <div class="section-head">
+        <h3 id="gallery-title">บรรยากาศสนาม</h3>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-main">
+          <img id="gallery-img" src="pic/slide1.jpg" alt="gallery image" class="gallery-img">
+        </div>
+        <div class="gallery-thumbs">
+          <img class="thumb" src="pic/slide1.jpg" alt="t1">
+          <img class="thumb" src="pic/slide2.jpg" alt="t2">
+          <img class="thumb" src="pic/slide3.jpg" alt="t3">
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <main class="section">
-
-  <section class="card welcome">
-    <div class="welcome-inner">
-      <h2>ยินดีต้อนรับ! <span style="color:#3a6ea5;">Swing Soul Flow 5</span>: Find Your Focus</h2>
-      <p class="welcome-lead">
-        Swing Soul Flow 5 ตั้งอยู่บนพื้นที่อันเงียบสงบของปราณบุรี มอบประสบการณ์สนามไดร์ฟกอล์ฟระดับพรีเมียมที่ออกแบบมาสำหรับทั้งนักกอล์ฟมือใหม่และนักกอล์ฟที่มีประสบการณ์ ด้วยพื้นที่กว้างขวาง สิ่งอำนวยความสะดวกสำหรับการฝึกซ้อมคุณภาพสูง และบรรยากาศธรรมชาติอันเงียบสงบ สนามไดร์ฟของเราจึงเป็นสถานที่ที่เหมาะสำหรับการฝึกฝนทักษะและเพลิดเพลินกับเกมกอล์ฟในบรรยากาศที่ผ่อนคลาย
-      </p>
-      <p class="welcome-lead">
-        ไม่ว่าคุณกำลังมองหาการพัฒนาทักษะหรือเพียงแค่ผ่อนคลายด้วยการสวิง Swing Soul Flow 5 ปราณบุรีก็พร้อมมอบสถานที่ที่สมบูรณ์แบบสำหรับนักกอล์ฟทุกคน
-      </p>
-    </div>
-  </section>
-
-    <!-- Gallery Section -->
-  <section class="card gallery-card">
-    <center><h3>บรรยากาศสนาม</h3></center>
-    <div class="gallery-wrapper">
-      <div class="gallery-img-container">
-        <button class="gallery-btn prev" aria-label="ภาพก่อนหน้า">
-          <ion-icon name="chevron-back-outline"></ion-icon>
-        </button>
-        <img id="gallery-img" src="pic/slide1.jpg" alt="บรรยากาศสนาม 1">
-        <button class="gallery-btn next" aria-label="ภาพถัดไป">
-          <ion-icon name="chevron-forward-outline"></ion-icon>
-        </button>
+    <section class="section container review-card card">
+      <div class="section-head">
+        <h4 id="review-title">รีวิวจากลูกค้า</h4>
       </div>
-      <div class="gallery-indicator" id="gallery-indicator"></div>
-    </div>
-  </section>
 
-   <!-- Review Section -->
-  <section class="card review-card">
-    <h4>รีวิวจากลูกค้า</h4>
-  <div id="reviews"></div>
-  <div style="text-align:center; margin-top:24px;">
-    <button id="showReviewForm" class="btn btn-primary">แสดงความคิดเห็น / รีวิว</button>
-  </div>
-  <div id="reviewFormSection" style="display:none; margin-top:24px;">
-    <form id="reviewForm" enctype="multipart/form-data">
-    <div class="review-row">
-      <input type="text" id="reviewName" placeholder="ชื่อ" required>
-      <input type="text" id="reviewSurname" placeholder="นามสกุล" required>
-      <input type="email" id="reviewEmail" placeholder="อีเมล" required>
-    </div>
-    <div class="review-text-row">
-      <textarea id="reviewText" placeholder="แสดงความคิดเห็น (ไม่เกิน 200 ตัวอักษร)" maxlength="200" required></textarea>
-    <div id="charCount">0/200</div>
-    </div>
-    <div class="review-file-row">
-      <label for="reviewImage" class="file-label">
-        <span>เลือกรูปภาพ (ถ้ามี)</span>
-        <input type="file" id="reviewImage" accept="image/*">
-      </label>
-      <img id="reviewPreview" style="display:none;">
-    </div>
-    <div class="review-btn-row">
-      <button type="submit" class="btn btn-primary">ส่งความคิดเห็น</button>
-      <button type="reset" class="btn btn-ghost">ล้างข้อมูล</button>
-    </div>
-  </form>
-  </div>
-  </section>
+      <div id="reviews" class="reviews-grid" aria-live="polite"></div>
 
-  <section id="about" class="card">
-    <h3>เกี่ยวกับเรา</h3>
-      <p>Swing Soul Flow 5 — สนามไดร์ฟกอล์ฟในอำเภอปราณบุรี จังหวัดประจวบคีรีขันธ์ บรรยากาศสงบ เหมาะสำหรับฝึกซ้อมทุกระดับ</p>
-      <p><strong>เวลา เปิด-ปิด:</strong></p>
-    <table class="open-hours">
-      <tr><td>จันทร์</td><td>08:00–22:00 น.</td></tr>
-      <tr><td>อังคาร</td><td>08:00–22:00 น.</td></tr>
-      <tr><td>พุธ</td><td>08:00–22:00 น.</td></tr>
-      <tr><td>พฤหัสบดี</td><td>08:00–22:00 น.</td></tr>
-      <tr><td>ศุกร์</td><td>08:00–22:00 น.</td></tr>
-      <tr><td>เสาร์</td><td>06:00–22:00 น.</td></tr>
-      <tr><td>อาทิตย์</td><td>06:00–22:00 น.</td></tr>
-    </table>
-  </section>
-
-    <section id="contact" class="card contact-flex">
-      <div class="contact-info">
-        <h3>ติดต่อเรา</h3>
-        <p><strong>ที่อยู่:</strong> 214/1 Phetkasem Road, Khao Noi Subdistrict, Pranburi District, Prachuap Khiri Khan 77120</p>
-        <p><strong>Tel:</strong> <a class="badge" href="tel:+66833084455">+66 83 308 4455</a></p>
-        <p><strong>Email:</strong> <a class="badge" href="mailto:swingsoulflow5@gmail.com">swingsoulflow5@gmail.com</a></p>
-        <p><strong>LINE Official:</strong> <a class="badge" href="https://lin.ee/u9hM6CGF" target="_blank" rel="noopener">เพิ่มเพื่อนทาง LINE</a></p>
-        <p><strong>แผนที่:</strong> <a class="badge" href="https://maps.app.goo.gl/NzSiyAojHpTAnynQ7" target="_blank" rel="noopener">Google Maps</a></p>
+      <div class="form-toggle">
+        <button id="showReviewForm" class="btn primary">แสดงความคิดเห็น / รีวิว</button>
       </div>
-      <div class="contact-image">
-        <img src="Swing.png" alt="แผนที่หรือภาพประกอบ" style="max-width:150px; border-radius:12px;">
-      </div>
-  </section>
 
+      <div id="reviewFormSection" class="card form-card" style="display:none;">
+        <form id="reviewForm" enctype="multipart/form-data" class="review-form">
+          <div class="row inputs-row">
+            <input type="text" id="reviewName" placeholder="ชื่อ" required>
+            <input type="text" id="reviewSurname" placeholder="นามสกุล" required>
+            <input type="email" id="reviewEmail" placeholder="อีเมล" required>
+          </div>
+
+          <div class="row">
+            <textarea id="reviewText" maxlength="200" placeholder="แสดงความคิดเห็น (ไม่เกิน 200 ตัวอักษร)" required></textarea>
+            <div id="charCount" class="char-count">0/200</div>
+          </div>
+
+          <div class="row file-row">
+            <label class="file-label">
+              <input type="file" id="reviewImage" accept="image/*">
+              <span>เลือกรูปภาพ (ถ้ามี)</span>
+            </label>
+            <img id="reviewPreview" class="preview" alt="preview" style="display:none;">
+          </div>
+
+          <div class="row actions">
+            <button type="submit" class="btn primary">ส่งความคิดเห็น</button>
+            <button type="reset" class="btn ghost">ล้างข้อมูล</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section id="about" class="section container card">
+      <h3>เกี่ยวกับเรา</h3>
+      <p class="lead">Swing Soul Flow 5 — สนามไดร์ฟกอล์ฟในอำเภอปราณบุรี จังหวัดประจวบคีรีขันธ์ บรรยากาศสงบ เหมาะสำหรับฝึกซ้อมทุกระดับ</p>
+
+      <h5>เวลา เปิด-ปิด</h5>
+      <table class="open-hours" role="table" aria-label="เวลาเปิดปิด">
+        <tbody>
+          <tr><td>จันทร์</td><td>08:00–22:00 น.</td></tr>
+          <tr><td>อังคาร</td><td>08:00–22:00 น.</td></tr>
+          <tr><td>พุธ</td><td>08:00–22:00 น.</td></tr>
+          <tr><td>พฤหัสบดี</td><td>08:00–22:00 น.</td></tr>
+          <tr><td>ศุกร์</td><td>08:00–22:00 น.</td></tr>
+          <tr><td>เสาร์</td><td>06:00–22:00 น.</td></tr>
+          <tr><td>อาทิตย์</td><td>06:00–22:00 น.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="contact" class="section container card contact-card">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>ติดต่อเรา</h3>
+          <p><strong>ที่อยู่:</strong> 214/1 Phetkasem Road, Khao Noi, Pranburi, Prachuap Khiri Khan 77120</p>
+          <p><strong>Tel:</strong> <a class="badge" href="tel:+66833084455">+66 83 308 4455</a></p>
+          <p><strong>Email:</strong> <a class="badge" href="mailto:swingsoulflow5@gmail.com">swingsoulflow5@gmail.com</a></p>
+        </div>
+        <div class="contact-media">
+          <img src="Swing.png" alt="Swing logo" class="contact-img">
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
-    <section id="social" class="card">
-      <h3>Follow us</h3>
-      <a href="https://www.facebook.com/profile.php?id=61579070145808"><ion-icon name="logo-facebook" size="large"></ion-icon></a>
-      <a href="https://www.instagram.com/swingsoulflow5/"><ion-icon name="logo-instagram" size="large"></ion-icon></a>
-      <a href="https://www.tiktok.com/@swingsoulflow"><ion-icon name="logo-tiktok" size="large"></ion-icon></a>
-      <a href="https://x.com/swingsoulflow5"><ion-icon name="logo-twitter" size="large"></ion-icon></a>
-    </section>
-    © <span id="y"></span> Swing Soul Flow 5 — Pranburi Driving Range
-    <span class="footer-social">
-      <a href="https://www.facebook.com/profile.php?id=61579070145808" target="_blank" aria-label="Facebook"><i class="fab fa-facebook fa-lg"></i></a>
-      <a href="https://www.instagram.com/swingsoulflow5/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram fa-lg"></i></a>
-      <a href="https://x.com/swingsoulflow5" target="_blank" aria-label="X"><i class="fab fa-x-twitter fa-lg"></i></a>
-      <a href="https://www.tiktok.com/@swingsoulflow" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok fa-lg"></i></a>
-    </span>
+    <div class="footer-inner container">
+      <div class="social card">
+        <h4><center>Follow</center></h4>
+        <div class="social-links">
+          <a href="https://www.facebook.com/profile.php?id=61579070145808" aria-label="facebook">FB</a>
+          <a href="https://www.instagram.com/swingsoulflow5/" aria-label="instagram">IG</a>
+          <a href="https://www.tiktok.com/@swingsoulflow" aria-label="tiktok">TT</a>
+        </div>
+      </div>
+      <div class="copyright">
+        © <span id="y"></span> <span id="footer-text">Swing Soul Flow 5 — Pranburi Driving Range</span>
+      </div>
+    </div>
   </footer>
 
   <script src="script.js"></script>
