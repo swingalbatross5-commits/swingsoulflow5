@@ -13,6 +13,7 @@ const I18N = {
     siteTitle: "Swing Soul Flow 5",
     heroTitle: "สนามไดร์ฟกอล์ฟที่สงบ สามารถฝึกสมาธิและโฟกัสสวิงได้เต็มที่",
     heroLead: "บรรยากาศร่มรื่น เหมาะสำหรับผู้เริ่มต้นจนถึงมือโปร",
+    callmap: "ดูแผนที่",
     welcomeTitle: "ยินดีต้อนรับ! <span style='color:#2b6fa6'>Swing Soul Flow 5</span>",
     welcomeP1: "Swing Soul Flow 5 ตั้งอยู่บนพื้นที่อันเงียบสงบของปราณบุรี มอบประสบการณ์สนามไดร์ฟกอล์ฟระดับพรีเมียมที่ออกแบบมาสำหรับทั้งนักกอล์ฟมือใหม่และนักกอล์ฟที่มีประสบการณ์",
     welcomeP2: "พื้นที่กว้างขวาง สิ่งอำนวยความสะดวกคุณภาพ และบรรยากาศธรรมชาติที่ช่วยให้คุณโฟกัสการฝึกซ้อมได้เต็มที่",
@@ -23,14 +24,33 @@ const I18N = {
     chooseFile: "เลือกรูปภาพ (ถ้ามี)",
     submitReview: "ส่งความคิดเห็น",
     resetForm: "ล้างข้อมูล",
-    noReviews: "ยังไม่มีรีวิว"
+    noReviews: "ยังไม่มีรีวิว",
+    // about / hours / contact
+    aboutTitle: "เกี่ยวกับเรา",
+    aboutLead: "Swing Soul Flow 5 — สนามไดร์ฟกอล์ฟในอำเภอปราณบุรี จังหวัดประจวบคีรีขันธ์ บรรยากาศสงบ เหมาะสำหรับฝึกซ้อมทุกระดับ",
+    hoursTitle: "เวลา เปิด-ปิด",
+    days: {
+      monday: "จันทร์",
+      tuesday: "อังคาร",
+      wednesday: "พุธ",
+      thursday: "พฤหัสบดี",
+      friday: "ศุกร์",
+      saturday: "เสาร์",
+      sunday: "อาทิตย์"
+    },
+    contactTitle: "ติดต่อเรา",
+    addressLabel: "ที่อยู่:",
+    addressText: "214/1 ถ.เพชรเกษม เขาน้อย ปราณบุรี ประจวบคีรีขันธ์ 77120",
+    tel: "+66 83 308 4455",
+    email: "swingsoulflow5@gmail.com"
   },
   en: {
     siteTitle: "Swing Soul Flow 5",
     heroTitle: "Calm driving range to practice focus and your swing",
-    heroLead: "A peaceful atmosphere suitable for beginners to professionals",
+    heroLead: "A peaceful atmosphere suitable for beginners to pros",
+    callmap: "Map",
     welcomeTitle: "Welcome! <span style='color:#2b6fa6'>Swing Soul Flow 5</span>",
-    welcomeP1: "Swing Soul Flow 5 is located in tranquil Pranburi, offering a premium driving range experience designed for both beginners and experienced golfers.",
+    welcomeP1: "Swing Soul Flow 5 is located in tranquil Pranburi, offering a premium driving range experience.",
     welcomeP2: "Ample space, quality facilities and a natural setting help you focus on practice.",
     galleryTitle: "Gallery",
     reviewTitle: "Customer Reviews",
@@ -39,7 +59,25 @@ const I18N = {
     chooseFile: "Choose image (optional)",
     submitReview: "Submit",
     resetForm: "Reset",
-    noReviews: "No reviews yet"
+    noReviews: "No reviews yet",
+    // about / hours / contact
+    aboutTitle: "About us",
+    aboutLead: "Swing Soul Flow 5 — driving range in Pranburi, a peaceful place suitable for all levels",
+    hoursTitle: "Opening hours",
+    days: {
+      monday: "Mon",
+      tuesday: "Tue",
+      wednesday: "Wed",
+      thursday: "Thu",
+      friday: "Fri",
+      saturday: "Sat",
+      sunday: "Sun"
+    },
+    contactTitle: "Contact",
+    addressLabel: "Address:",
+    addressText: "214/1 Phetkasem Road, Khao Noi, Pranburi, Prachuap Khiri Khan 77120",
+    tel: "+66 83 308 4455",
+    email: "swingsoulflow5@gmail.com"
   }
 };
 
@@ -48,26 +86,53 @@ function applyLanguage(lang) {
   const setHTML = (id, html) => { const el = document.getElementById(id); if (el) el.innerHTML = html; };
   const setText = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
 
+  // existing keys
   setText('site-title', t.siteTitle);
   setHTML('hero-title', t.heroTitle);
   setText('hero-lead', t.heroLead);
   setHTML('welcome-title', t.welcomeTitle);
   setText('welcome-p1', t.welcomeP1);
   setText('welcome-p2', t.welcomeP2);
+  setText('callmap', t.callmap);
   setText('gallery-title', t.galleryTitle);
   setText('review-title', t.reviewTitle);
   setText('showReviewForm', t.showReviewBtn);
   setText('footer-text', t.footerText);
 
-  // form labels (if present)
-  const fileLabel = document.querySelector('.file-label span');
-  if (fileLabel) fileLabel.textContent = t.chooseFile;
+  // form labels
+  const fileLabelSpan = document.querySelector('.file-label span');
+  if (fileLabelSpan) fileLabelSpan.textContent = t.chooseFile;
   const submitBtn = document.querySelector('#reviewForm button[type="submit"]');
   if (submitBtn) submitBtn.textContent = t.submitReview;
   const resetBtn = document.querySelector('#reviewForm button[type="reset"]');
   if (resetBtn) resetBtn.textContent = t.resetForm;
 
-  // update active class on lang buttons
+  // new: about section
+  setText('aboutUs', t.aboutTitle);
+  setText('aboutUsText', t.aboutLead);
+  setText('Opening', t.hoursTitle);
+
+  // days (if ids exist)
+  Object.entries(t.days || {}).forEach(([key, label]) => {
+    const el = document.getElementById(key);
+    if (el) el.textContent = label;
+    // also support ids like monday_label or day-monday if you used different naming
+  });
+
+  // contact
+  setText('contactUs', t.contactTitle);
+  // address element contains a strong in HTML; set innerHTML to keep <strong>
+  const addrEl = document.getElementById('address');
+  if (addrEl) addrEl.innerHTML = `<strong>${t.addressLabel}</strong>`;
+  setText('addressText', t.addressText);
+
+  // replace telephone/email text if anchors present
+  const telEl = document.querySelector('.contact-info a[href^="tel:"]');
+  if (telEl) { telEl.textContent = t.tel; telEl.setAttribute('href', 'tel:' + t.tel.replace(/\s+/g, '')); }
+  const emailEl = document.querySelector('.contact-info a[href^="mailto:"]');
+  if (emailEl) { emailEl.textContent = t.email; emailEl.setAttribute('href', 'mailto:' + t.email); }
+
+  // update lang button active state
   const btnTh = document.getElementById('lang-th');
   const btnEn = document.getElementById('lang-en');
   if (btnTh) btnTh.classList.toggle('active-lang', lang === 'th');
