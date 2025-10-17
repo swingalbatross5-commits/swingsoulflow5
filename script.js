@@ -39,29 +39,30 @@ const I18N = {
       sunday: "อาทิตย์"
     },
     contactTitle: "ติดต่อเรา",
+    contactTitle2: "ติดต่อเรา",
     addressLabel: "ที่อยู่:",
-    addressText: "214/1 ถ.เพชรเกษม เขาน้อย ปราณบุรี ประจวบคีรีขันธ์ 77120",
+    addressText: "214/1 ถ.เพชรเกษม ต.เขาน้อย อ.ปราณบุรี จ.                           ประจวบคีรีขันธ์ 77120",
     tel: "+66 83 308 4455",
     email: "swingsoulflow5@gmail.com"
   },
   en: {
     siteTitle: "Swing Soul Flow 5",
     heroTitle: "Calm driving range to practice focus and your swing",
-    heroLead: "A peaceful atmosphere suitable for beginners to pros",
+    heroLead: "A peaceful atmosphere suitable for beginners to professionals",
     callmap: "Map",
     welcomeTitle: "Welcome! <span style='color:#2b6fa6'>Swing Soul Flow 5</span>",
-    welcomeP1: "Swing Soul Flow 5 is located in tranquil Pranburi, offering a premium driving range experience.",
-    welcomeP2: "Ample space, quality facilities and a natural setting help you focus on practice.",
+    welcomeP1: "Swing Soul Flow 5 For that area of ​​Pranburi, it offers an outstanding golf practice experience for both beginners and experienced golfers.",
+    welcomeP2: "Spacious space, quality facilities and a natural atmosphere that allows you to focus on your training.",
     galleryTitle: "Gallery",
     reviewTitle: "Customer Reviews",
-    showReviewBtn: "Leave a review",
+    showReviewBtn: "review",
     footerText: "Swing Soul Flow 5 — Pranburi Driving Range",
     chooseFile: "Choose image (optional)",
     submitReview: "Submit",
     resetForm: "Reset",
     noReviews: "No reviews yet",
     // about / hours / contact
-    aboutTitle: "About us",
+    aboutTitle: "About Us",
     aboutLead: "Swing Soul Flow 5 — driving range in Pranburi, a peaceful place suitable for all levels",
     hoursTitle: "Opening hours",
     days: {
@@ -74,6 +75,7 @@ const I18N = {
       sunday: "Sun"
     },
     contactTitle: "Contact",
+    contactTitle2: "Contact",
     addressLabel: "Address:",
     addressText: "214/1 Phetkasem Road, Khao Noi, Pranburi, Prachuap Khiri Khan 77120",
     tel: "+66 83 308 4455",
@@ -82,63 +84,77 @@ const I18N = {
 };
 
 function applyLanguage(lang) {
+  console.log('applyLanguage ->', lang);
   const t = I18N[lang] || I18N.th;
-  const setHTML = (id, html) => { const el = document.getElementById(id); if (el) el.innerHTML = html; };
-  const setText = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
 
-  // existing keys
+  const setHTML = (id, html) => {
+    const el = document.getElementById(id);
+    if (!el) { console.warn('missing element', id); return; }
+    el.innerHTML = html;
+    console.log('setHTML', id);
+  };
+  const setText = (id, text) => {
+    const el = document.getElementById(id);
+    if (!el) { console.warn('missing element', id); return; }
+    el.textContent = text;
+    console.log('setText', id);
+  };
+
+  // core
   setText('site-title', t.siteTitle);
   setHTML('hero-title', t.heroTitle);
   setText('hero-lead', t.heroLead);
   setHTML('welcome-title', t.welcomeTitle);
   setText('welcome-p1', t.welcomeP1);
-  setText('welcome-p2', t.welcomeP2);
   setText('callmap', t.callmap);
+  setText('welcome-p2', t.welcomeP2);
   setText('gallery-title', t.galleryTitle);
   setText('review-title', t.reviewTitle);
   setText('showReviewForm', t.showReviewBtn);
+  setText('contactUs2', t.contactTitle2);
   setText('footer-text', t.footerText);
 
-  // form labels
+  // form / buttons
   const fileLabelSpan = document.querySelector('.file-label span');
-  if (fileLabelSpan) fileLabelSpan.textContent = t.chooseFile;
+  if (fileLabelSpan) { fileLabelSpan.textContent = t.chooseFile; console.log('setText file-label'); }
   const submitBtn = document.querySelector('#reviewForm button[type="submit"]');
-  if (submitBtn) submitBtn.textContent = t.submitReview;
+  if (submitBtn) { submitBtn.textContent = t.submitReview; console.log('setText submitBtn'); }
   const resetBtn = document.querySelector('#reviewForm button[type="reset"]');
-  if (resetBtn) resetBtn.textContent = t.resetForm;
+  if (resetBtn) { resetBtn.textContent = t.resetForm; console.log('setText resetBtn'); }
 
-  // new: about section
+  // about / hours
   setText('aboutUs', t.aboutTitle);
   setText('aboutUsText', t.aboutLead);
   setText('Opening', t.hoursTitle);
-
-  // days (if ids exist)
-  Object.entries(t.days || {}).forEach(([key, label]) => {
-    const el = document.getElementById(key);
-    if (el) el.textContent = label;
-    // also support ids like monday_label or day-monday if you used different naming
-  });
+  if (t.days) {
+    Object.entries(t.days).forEach(([key, label]) => {
+      const el = document.getElementById(key);
+      if (el) { el.textContent = label; console.log('setText day', key); }
+      else console.warn('missing day element', key);
+    });
+  }
 
   // contact
   setText('contactUs', t.contactTitle);
-  // address element contains a strong in HTML; set innerHTML to keep <strong>
   const addrEl = document.getElementById('address');
-  if (addrEl) addrEl.innerHTML = `<strong>${t.addressLabel}</strong>`;
+  if (addrEl) { addrEl.innerHTML = `<strong>${t.addressLabel}</strong>`; console.log('setHTML address'); }
   setText('addressText', t.addressText);
 
-  // replace telephone/email text if anchors present
+  // telephone / email anchors (by href)
   const telEl = document.querySelector('.contact-info a[href^="tel:"]');
-  if (telEl) { telEl.textContent = t.tel; telEl.setAttribute('href', 'tel:' + t.tel.replace(/\s+/g, '')); }
+  if (telEl) { telEl.textContent = t.tel; telEl.setAttribute('href', 'tel:' + t.tel.replace(/\s+/g,'')); console.log('setText tel'); }
   const emailEl = document.querySelector('.contact-info a[href^="mailto:"]');
-  if (emailEl) { emailEl.textContent = t.email; emailEl.setAttribute('href', 'mailto:' + t.email); }
+  if (emailEl) { emailEl.textContent = t.email; emailEl.setAttribute('href', 'mailto:' + t.email); console.log('setText email'); }
 
-  // update lang button active state
+  // lang button active
   const btnTh = document.getElementById('lang-th');
   const btnEn = document.getElementById('lang-en');
   if (btnTh) btnTh.classList.toggle('active-lang', lang === 'th');
   if (btnEn) btnEn.classList.toggle('active-lang', lang === 'en');
 
-  try { localStorage.setItem('site_lang', lang); } catch (e) {}
+  try { localStorage.setItem('site_lang', lang); } catch (e) { /* ignore */ }
+
+  console.log('applyLanguage finished');
 }
 
 // --- Utilities ---
